@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>XMLHttpRequest Example</title>
+   </head>
+   <body>
+<script>
+var request=new XMLHttpRequest();
+   request.open("GET","https://restcountries.com/v3.1/all");
+   request.send();
+   request.onload=function(){
+     var res =JSON.parse(request.response);
+     var currency =res.filter((element)=> {
+        for( var key in element.currencies){
+            if( element.currencies[key].code === "USD"){
+                return element;
+            }
+        }
+     })
+     console.log(currency);
+    }
+   
+  
+      </script>
+   </body>
+</html>
